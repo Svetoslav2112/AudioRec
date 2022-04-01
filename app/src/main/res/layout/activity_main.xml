@@ -18,35 +18,67 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_start_recording"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/start_button_name"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/button_pause_recording"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
+    <TextView
+        android:id="@+id/recording_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="@string/pause_button_name"
-        android:textSize="18sp" />
+        android:layout_marginTop="250dp"
+        android:text="00:00.0"
+        android:textAlignment="center"
+        android:textColor="@color/timer_color"
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_stop_recording"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_alignParentEnd="true"
+    <com.example.audiorec.WaveformsVoiceView
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:layout_above="@+id/buttons_layer"
+        android:layout_below="@+id/recording_timer"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:id="@+id/buttons_layer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
-        android:text="@string/stop_button_name"
-        android:textSize="18sp" />
+        android:layout_marginTop="89dp"
+        android:layout_marginBottom="170dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/button_cancel_recording"
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:background="@drawable/ic_ripple"
+            android:src="@drawable/ic_btn_cancel" />
+
+        <ImageButton
+            android:id="@+id/button_record"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/ic_record"
+            android:src="@drawable/ic_btn_play" />
+
+        <ImageButton
+            android:id="@+id/button_save_recording"
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:background="@drawable/ic_ripple"
+            android:src="@drawable/ic_btn_save" />
+
+        <ImageButton
+            android:id="@+id/button_recordings_list"
+            android:layout_width="@dimen/btn_size"
+            android:layout_height="@dimen/btn_size"
+            android:background="@drawable/ic_ripple"
+            android:src="@drawable/ic_btn_recordings_list"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
 </RelativeLayout>

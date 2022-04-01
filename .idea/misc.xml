@@ -3,14 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.4287037037037037" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/ic_baseline_mic_24.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_btn_cancel.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_btn_pause.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_btn_play.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_btn_recordings_list.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_btn_save.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_launcher2_background.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_launcher2_foreground.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.11" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground2.xml" value="0.137" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_record.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_ripple.xml" value="0.1965" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26930694580078124" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.106" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher2.xml" value="0.137" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1495" />

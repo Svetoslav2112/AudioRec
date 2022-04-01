@@ -4,107 +4,118 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.media.MediaRecorder
 import android.os.Build
-import android.os.Environment
-import android.widget.Button
-import android.widget.Toast
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.log10
 
-class MainActivity : AppCompatActivity() {
-    private var output: String = ""
-    private var state: Boolean = false
+class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
+    private var filename: String = ""
+    private var directoryPath: String = ""
+    private var isPaused: Boolean = false
+    private var isRecording: Boolean = false
+    private var permissionsGranted: Boolean = false
     private lateinit var mediaRecorder: MediaRecorder
-    private var recordingStopped: Boolean = false
 
-    private lateinit var btnStart: Button
-    private lateinit var btnPause: Button
-    private lateinit var btnStop: Button
+    private lateinit var timer: Timer
+    private lateinit var vibrator: Vibrator
 
     private val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    private var permissionsGranted: Boolean = false
     private val requestPermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {   permissions ->
         if (permissions.all { it.value }) {
             permissionsGranted = true
+            startRecording()
         }
     }
 
+    @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mediaRecorder = MediaRecorder()
 
-        btnStart = findViewById(R.id.button_start_recording)
-        btnPause = findViewById(R.id.button_pause_recording)
-        btnStop = findViewById(R.id.button_stop_recording)
+        timer = Timer(this)
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        btnStart.setOnClickListener { startRecording() }
-        btnPause.setOnClickListener { pauseRecording() }
-        btnStop.setOnClickListener { stopRecording() }
+
+        button_record.setOnClickListener {
+            when {
+                isPaused -> resumeRecording()
+                isRecording -> pauseRecording()
+                else -> startRecording()
+            }
+
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
+        }
+        button_cancel_recording.setOnClickListener { stopRecording() }
     }
 
     private fun startRecording() {
         if (!permissionsGranted) {
             requestPermissions.launch(permissions)
         }
-        if (permissionsGranted) {
-            output = Environment.getExternalStorageDirectory().absolutePath + "/myRecording.mp3"
+        else {
+            directoryPath = "${externalCacheDir?.absolutePath}/"
 
-            mediaRecorder = MediaRecorder()
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            mediaRecorder.setOutputFile(output)
+            var simpleDateFormat = SimpleDateFormat("yyyy.mm.dd_hh.mm.ss")
+            var date = simpleDateFormat.format(Date())
+            filename = "audio_record_$date"
 
-            try {
-                mediaRecorder.prepare()
-                mediaRecorder.start()
-                state = true
-                Toast.makeText(this, "Recording Started", Toast.LENGTH_SHORT).show()
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
+            mediaRecorder.apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                setOutputFile("$directoryPath$filename.mp3")
+                try {
+                    prepare()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                start()
             }
+            button_record.setImageResource(R.drawable.ic_btn_pause)
+            isRecording = true
+            isPaused = false
+            timer.start()
         }
     }
 
-    @SuppressLint("RestrictedApi", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun pauseRecording() {
-        if (state) {
-            if (!recordingStopped) {
-                Toast.makeText(this, "Stopped", Toast.LENGTH_SHORT).show()
-                mediaRecorder.pause()
-                recordingStopped = true
-                val btnPause: Button = findViewById(R.id.button_pause_recording)
-                btnPause.text = "Resume"
-            } else {
-                resumeRecording()
-            }
-        }
+        mediaRecorder.pause()
+        isPaused = true
+        isRecording = false
+        button_record.setImageResource(R.drawable.ic_btn_play)
+
+        timer.pause()
     }
 
-    @SuppressLint("RestrictedApi", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun resumeRecording() {
-        Toast.makeText(this, "Resumed", Toast.LENGTH_SHORT).show()
         mediaRecorder.resume()
-        val btnPause: Button = findViewById(R.id.button_pause_recording)
-        btnPause.text = "Pause"
-        recordingStopped = true
+        isPaused = false
+        isRecording = true
+        button_record.setImageResource(R.drawable.ic_btn_pause)
+
+        timer.start()
     }
 
     private fun stopRecording() {
-        if (state) {
-            mediaRecorder.stop()
-            mediaRecorder.release()
-            state = false
-        } else {
-            Toast.makeText(this, "You are not recording right now.", Toast.LENGTH_SHORT).show()
-        }
+        timer.stop()
     }
+
+    override fun onTimerTick(duration: String) {
+        recording_timer.text = duration
+    }
+
 }

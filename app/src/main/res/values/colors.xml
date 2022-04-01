@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="grapefruit">#D35D40</color>
+    <color name="grapefruit_ripple">#884939</color>
+    <color name="grey">#7A7A7A</color>
+    <color name="hover_grey">#6E6E6E</color>
+    <color name="disabled_grey">#ACACAC</color>
+    <color name="light_grey">#BDBDBD</color>
+    <color name="background_grey">#DDDDDD</color>
+
+    <color name="timer_color">#4C4C4C</color>
+    <color name="text_color">#272727</color>
+    <color name="status_color">#E4E4E4</color>
+
+
 </resources>
