@@ -112,10 +112,12 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
     private fun stopRecording() {
         timer.stop()
+        button_record.setImageResource(R.drawable.ic_btn_play)
     }
 
     override fun onTimerTick(duration: String) {
         recording_timer.text = duration
+        waveFormsVoiceView.addAmplitude(mediaRecorder.maxAmplitude.toFloat())
     }
 
 }
