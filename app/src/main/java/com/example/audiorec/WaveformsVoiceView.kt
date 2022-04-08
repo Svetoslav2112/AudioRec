@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import java.util.ArrayDeque
 
 class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
@@ -29,7 +30,7 @@ class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context
     }
 
     fun addAmplitude(amplitude: Float) {
-        var normalized = Math.min(amplitude.toInt() / 25, screenHeight.toInt()).toFloat()
+        var normalized = Math.min(amplitude.toInt() / 21, screenHeight.toInt()).toFloat()
         amplitudes.addFirst(normalized)
 
         spikes.clear()
@@ -56,6 +57,16 @@ class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context
         }
 
         invalidate()
+    }
+
+    fun clear(): ArrayDeque<Float> {
+        var amps = amplitudes.clone() as ArrayDeque<Float>
+
+        amplitudes.clear()
+        spikes.clear()
+        invalidate()
+
+        return amps
     }
 
     override fun draw(canvas: Canvas) {

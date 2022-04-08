@@ -18,4 +18,15 @@
         <item name="android:textColor">@color/text_color</item>
         <item name="rippleColor">@color/disabled_grey</item>
     </style>
+    
+    <style name="TextLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="boxBackgroundColor">@color/background_grey</item>
+        <item name="boxStrokeColor">@color/stroke_color</item>
+        <item name="boxCornerRadiusBottomStart">26dp</item>
+        <item name="boxCornerRadiusBottomEnd">26dp</item>
+        <item name="boxCornerRadiusTopStart">26dp</item>
+        <item name="boxCornerRadiusTopEnd">26dp</item>
+    </style>
 </resources>

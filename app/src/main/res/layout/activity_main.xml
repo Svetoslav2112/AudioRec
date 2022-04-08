@@ -1,95 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textview_sound_recorder_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_title"
-        android:textColor="#000"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"/>
-
-    <TextView
-        android:id="@+id/recording_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00.0"
-        android:textColor="@color/timer_color"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_sound_recorder_heading"
-        android:layout_marginTop="100dp" />
-
-    <com.example.audiorec.WaveformsVoiceView
-        android:id="@+id/waveFormsVoiceView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="400px"
-        android:layout_above="@+id/buttons_layer"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="410dp"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recording_timer"
-        android:layout_marginTop="70dp"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/buttons_layer"
+        <TextView
+            android:id="@+id/textview_sound_recorder_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_title"
+            android:textColor="#000"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/recording_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00.0"
+            android:textColor="@color/timer_color"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_sound_recorder_heading"
+            android:layout_marginTop="100dp" />
+
+        <com.example.audiorec.WaveformsVoiceView
+            android:id="@+id/waveFormsVoiceView"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_above="@+id/buttons_layer"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="410dp"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recording_timer"
+            android:layout_marginTop="70dp"/>
+
+        <LinearLayout
+            android:id="@+id/buttons_layer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="632dp"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/waveFormsVoiceView"
+            android:layout_marginTop="100dp">
+
+            <ImageButton
+                android:id="@+id/button_cancel_recording"
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:background="@drawable/ic_ripple"
+                android:src="@drawable/ic_btn_cancel" />
+
+            <ImageButton
+                android:id="@+id/button_record"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ic_record"
+                android:src="@drawable/ic_btn_play" />
+
+            <ImageButton
+                android:id="@+id/button_save_recording"
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:background="@drawable/ic_ripple"
+                android:src="@drawable/ic_btn_save" />
+
+            <ImageButton
+                android:id="@+id/button_recordings_list"
+                android:layout_width="@dimen/btn_size"
+                android:layout_height="@dimen/btn_size"
+                android:background="@drawable/ic_ripple"
+                android:src="@drawable/ic_btn_recordings_list"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/bottom_sheet_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="632dp"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/waveFormsVoiceView"
-        android:layout_marginTop="100dp">
-
-        <ImageButton
-            android:id="@+id/button_cancel_recording"
-            android:layout_width="@dimen/btn_size"
-            android:layout_height="@dimen/btn_size"
-            android:background="@drawable/ic_ripple"
-            android:src="@drawable/ic_btn_cancel" />
-
-        <ImageButton
-            android:id="@+id/button_record"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/ic_record"
-            android:src="@drawable/ic_btn_play" />
-
-        <ImageButton
-            android:id="@+id/button_save_recording"
-            android:layout_width="@dimen/btn_size"
-            android:layout_height="@dimen/btn_size"
-            android:background="@drawable/ic_ripple"
-            android:src="@drawable/ic_btn_save" />
-
-        <ImageButton
-            android:id="@+id/button_recordings_list"
-            android:layout_width="@dimen/btn_size"
-            android:layout_height="@dimen/btn_size"
-            android:background="@drawable/ic_ripple"
-            android:src="@drawable/ic_btn_recordings_list"
-            android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:background="@color/opaque_background"
+        android:visibility="gone"/>
 
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/bottom_sheet"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

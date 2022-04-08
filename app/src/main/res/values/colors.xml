@@ -19,6 +19,8 @@
     <color name="timer_color">#4C4C4C</color>
     <color name="text_color">#272727</color>
     <color name="status_color">#E4E4E4</color>
+    <color name="stroke_color">#1E88E5</color>
 
+    <color name="opaque_background">#61000000</color>
 
 </resources>
