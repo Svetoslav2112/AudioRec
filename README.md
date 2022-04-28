@@ -1,10 +1,16 @@
 # This is a simple Audio Recorder for Android
 
-It is still in progress.
-Permissions have been settled.
+You can record, browse and play records with it.
 
-## TODO:
+It is fully tested for Xiaomi Redmi Note 8 Pro.
 
-Improve user interface.
+For other Android devices there could be interface malfunctions.
 
-Fix functionallity issues.
+##Latest rework dealt with the following:
+
+Added visible waveforms for the voice recorder and media player.
+Added buttons for rename and delete in the recordings list as well as
+making it possible to select multiple recordings for deletion.
+
+
+
