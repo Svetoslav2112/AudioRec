@@ -10,11 +10,10 @@ data class AudioRecord(
     var filePath: String,
     var timestamp: Long,
     var duration: String,
-    var ampsPath: String
-) {
+    var ampsPath: String,
     @PrimaryKey(autoGenerate = true)
-    var id = 0
+    var id: Int = 0
+) {
     @Ignore
     var isChecked = false
-
 }

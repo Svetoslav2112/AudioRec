@@ -3,8 +3,8 @@ package com.example.audiorec
 import androidx.appcompat.app.AppCompatActivity
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.appsearch.GlobalSearchSession
 import android.content.Context
+import android.content.Intent
 import android.media.MediaRecorder
 import android.os.*
 import android.view.View
@@ -23,6 +23,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.ObjectOutputStream
+import java.text.DateFormat.getDateTimeInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mediaRecorder = MediaRecorder()
 
         database = Room.databaseBuilder(
             this,
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
             vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
         }
         button_recordings_list.setOnClickListener {
-            //TODO
+            startActivity(Intent(this, GalleryActivity::class.java))
             Toast.makeText(this, "List button", Toast.LENGTH_SHORT).show()
 
         }
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
         }
         button_cancel_recording.setOnClickListener {
             stopRecording()
-            File("$directoryPath$filename.mp3")
+            File("$directoryPath$filename.mp3").delete()
             Toast.makeText(this, "Recording canceled", Toast.LENGTH_SHORT).show()
         }
     }
@@ -156,10 +156,11 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
         else {
             directoryPath = "${externalCacheDir?.absolutePath}/"
 
-            var simpleDateFormat = SimpleDateFormat("yyyy.mm.dd_hh.mm.ss")
+            var simpleDateFormat = SimpleDateFormat("yyyy.MM.dd_HH.mm.ss")
             var date = simpleDateFormat.format(Date())
             filename = "audio_record_$date"
 
+            mediaRecorder = MediaRecorder()
             mediaRecorder.apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
@@ -205,6 +206,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
     private fun stopRecording() {
         timer.stop()
+
         mediaRecorder.apply {
             stop()
             release()
@@ -216,7 +218,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
         button_save_recording.visibility = View.GONE
 
         button_cancel_recording.isClickable = false
-        //button_cancel_recording.setImageResource(R.drawable.)
+        button_cancel_recording.isClickable = false
         button_record.setImageResource(R.drawable.ic_btn_play)
 
         recording_timer.text = "00:00.0"
@@ -230,7 +232,7 @@ class MainActivity : AppCompatActivity(), Timer.OnTimerTickListener {
 
     override fun onTimerTick(duration: String) {
         recording_timer.text = duration
-        this.duration = duration.dropLast(3)
+        this.duration = duration.dropLast(2)
         waveFormsVoiceView.addAmplitude(mediaRecorder.maxAmplitude.toFloat())
     }
 

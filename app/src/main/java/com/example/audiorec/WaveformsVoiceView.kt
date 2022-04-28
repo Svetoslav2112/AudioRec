@@ -10,6 +10,7 @@ class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context
 
     private var paint = Paint()
     private var amplitudes = ArrayDeque<Float>()
+    private var amplitudesDeNormalized = ArrayDeque<Float>()
     private var spikes = ArrayList<RectF>()
 
     private var radius = 6f
@@ -31,6 +32,7 @@ class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context
 
     fun addAmplitude(amplitude: Float) {
         var normalized = Math.min(amplitude.toInt() / 21, screenHeight.toInt()).toFloat()
+        amplitudesDeNormalized.addLast(amplitude)
         amplitudes.addFirst(normalized)
 
         spikes.clear()
@@ -60,7 +62,7 @@ class WaveformsVoiceView(context: Context?, attrs: AttributeSet?) : View(context
     }
 
     fun clear(): ArrayDeque<Float> {
-        var amps = amplitudes.clone() as ArrayDeque<Float>
+        var amps = amplitudesDeNormalized.clone() as ArrayDeque<Float>
 
         amplitudes.clear()
         spikes.clear()

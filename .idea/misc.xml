@@ -6,6 +6,9 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.4287037037037037" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/background_round.xml" value="0.2315" />
+        <entry key="app/src/main/res/drawable/ic_audio_pause.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/ic_audio_play.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/ic_backward.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/ic_baseline_mic_24.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_btn_cancel.xml" value="0.1965" />
@@ -13,15 +16,25 @@
         <entry key="app/src/main/res/drawable/ic_btn_play.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_btn_recordings_list.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_btn_save.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_circle.xml" value="0.2315" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.189" />
+        <entry key="app/src/main/res/drawable/ic_foward.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/ic_launcher2_background.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_launcher2_foreground.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.11" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground2.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/ic_play_rec.xml" value="0.2315" />
         <entry key="app/src/main/res/drawable/ic_record.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_rename.xml" value="0.189" />
+        <entry key="app/src/main/res/drawable/ic_rename_disabled.xml" value="0.189" />
         <entry key="app/src/main/res/drawable/ic_ripple.xml" value="0.1965" />
+        <entry key="app/src/main/res/layout/activity_audio_player.xml" value="0.28098907470703127" />
+        <entry key="app/src/main/res/layout/activity_gallery.xml" value="0.30469343324867565" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15393895944098857" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.2702009405728944" />
+        <entry key="app/src/main/res/layout/itemview_layout.xml" value="0.22313232421875" />
+        <entry key="app/src/main/res/layout/rename_record_bottom_sheet.xml" value="0.26421547669944423" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.106" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher2.xml" value="0.137" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1495" />
